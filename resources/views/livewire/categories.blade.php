@@ -23,12 +23,13 @@
                 <tbody>
                   @foreach ($categories as $cat)
                     <tr>
-                      <td scope="row"></td>
+                      <td scope=""></td>
                       <td class="">{{ $cat->category_code }}</td>
                       <td class="">{{ $cat->category_name }}</td>
                       <td class="">{{ date('m-d-Y', strtotime($cat->created_at)) }}</td>
                       <td>
-                        {{-- <a href="{{ route('categories.deleteCategory', ['category_id' => $cat->id]) }}"></a> --}}
+                        <a class="btn btn-sm btn-primary mr-3"
+                          href="{{ route('category.edit', ['category_id' => $cat->id]) }}">Edit</a>
                         <a href="" class="btn btn-sm btn-danger"
                           onclick="confirm('Are you sure you want to delete this category?') || event.stopImmediatePropagation()"
                           wire:click.prevent="deleteCategory({{ $cat->id }})">Delete</a>
