@@ -50,6 +50,8 @@ class AddOrder extends Component
         $order->save();
 
         session()->flash('message', 'Order created successfully!');
+        
+        return redirect()->to('orders');
     }
 
     public function render()

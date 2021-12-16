@@ -1,5 +1,17 @@
 <div>
-  {{-- sale chart --}}
+  <style>
+    .paginate-row {
+      margin: auto;
+      width: 50%;
+    }
+
+    .paginate-row div {
+      margin: auto;
+      width: 50%;
+    }
+
+  </style>
+
   <div class="row">
     <!-- column -->
     <div class="col-12">
@@ -25,62 +37,52 @@
           <!-- title -->
         </div>
         <div class="table-responsive">
-          <table class="table v-middle">
-            <thead>
-              <tr class="bg-light">
+          <table class="table v-middle table-sm ">
+            <thead class="bg-secondary text-white">
+              <tr class="">
                 <th class="border-top-0">SN</th>
-                <th class="border-top-0">Category Code</th>
+                <th class="border-top-0">Code</th>
                 <th class="border-top-0">Advance Paid</th>
+                <th class="border-top-0">Qty</th>
                 <th class="border-top-0">Due Date</th>
                 <th class="border-top-0">Balance</th>
                 <th class="border-top-0">Order Details</th>
                 <th class="border-top-0">Total</th>
                 <th class="border-top-0">Client Name</th>
+                <th class="border-top-0">Phone</th>
                 <th class="border-top-0">Address</th>
                 <th class="border-top-0"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="border-top-0">SN</td>
-                <td class="m-b-0 font-16">Category Code</td>
-                <td class="border-top-0">Advance Paid</td>
-                <td class="label label-info">Due Date</td>
-                <td class="border-top-0">Balance</td>
-                <td class="border-top-0">Order Details</td>
-                <td class="">Total</td>
-                <td class="border-top-0">Client Name</td>
-                <td class="border-top-0">Address</td>
-                <td class="d-flex text-align-center">
-                  <div class="action m-2">
-                    <a href="">Modify</a>
-                    <a href="">Delete</a>
-                  </div>
-                  <a href="">Print</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="m-r-10"><a class="btn btn-circle btn-orange text-white">MA</a></div>
-                    <div class="">
-                      <h4 class="m-b-0 font-16">Monster Admin</h4>
+              @foreach ($orders as $order)
+                <tr>
+                  <td class=""></td>
+                  <td class="">{{ $order->order_code }}</td>
+                  <td class="">{{ $order->advance_paid }}</td>
+                  <td class="">{{ $order->quantity }}</td>
+                  <td class="">{{ $order->due_date }}</td>
+                  <td class="">{{ $order->balance }}</td>
+                  <td class="">{{ $order->description }}</td>
+                  <td class="">{{ $order->price }}</td>
+                  <td class="">{{ $order->full_name }}</td>
+                  <td class="">{{ $order->mobile }}</td>
+                  <td class="">{{ $order->address }}</td>
+                  <td class="d-flex text-align-center">
+                    <div class="action m-2">
+                      <a href="" class="btn btn-sm btn-outline-primary m-1">Modify</a>
+                      <a href="" class="btn btn-sm btn-outline-danger m-1">Delete</a>
+                      <a href="" class="btn btn-sm btn-secondary">Print</a>
                     </div>
-                  </div>
-                </td>
-                <td>Single Use</td>
-                <td>Venessa Fern</td>
-                <td>
-                  <label class="label label-info">Vue Js</label>
-                </td>
-                <td>46</td>
-                <td>356</td>
-                <td>
-                  <h5 class="m-b-0">$2850.06</h5>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
+        </div>
+        <div class="paginate-row">
+          {{-- pagination --}}
+          {{ $orders->links() }}
         </div>
       </div>
     </div>

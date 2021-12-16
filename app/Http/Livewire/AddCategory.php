@@ -20,9 +20,14 @@ class AddCategory extends Component
         $category->category_name = $this->category_name;
         $category->save();
 
+        // clear input fields
+        $category->category_code = $this->reset();
+        $category->category_name = $this->reset();
+
+
         session()->flash('message', 'Category created successfully!');
 
-        return redirect()->to('categories');
+        // return redirect()->to('categories');
     }
     
     public function render()

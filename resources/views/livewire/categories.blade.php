@@ -11,8 +11,8 @@
             </div>
 
             <div class="categories mt-5">
-              <table class="table">
-                <thead>
+              <table class="table table-sm">
+                <thead class="bg-secondary text-white">
                   <tr>
                     <th></th>
                     <th>Code</th>
@@ -26,7 +26,7 @@
                       <td scope="row"></td>
                       <td class="">{{ $cat->category_code }}</td>
                       <td class="">{{ $cat->category_name }}</td>
-                      <td class="">{{ $cat->created_at }}</td>
+                      <td class="">{{ date('m-d-Y', strtotime($cat->created_at)) }}</td>
                     </tr>
                   @endforeach
                 </tbody>

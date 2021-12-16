@@ -31,7 +31,7 @@
           </div>
 
           {{-- panel body --}}
-          <div class="panel-body">
+          <div class="panel-body mt-3">
             @if (Session::has('message'))
               <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
             @endif
@@ -40,7 +40,7 @@
               <div class="form-group">
                 <label for="" class="col-md-4 control-label">Category Code</label>
                 <div class="col-md-4">
-                  <input type="text" placeholder="Category Name" class="form-control input-md"
+                  <input type="text" placeholder="Enter Name" autofocus class="form-control input-md" maxlength="10"
                     wire:model="category_code">
                   @error('category_code')
                     <p class="text-danger">{{ $message }}</p>
@@ -51,8 +51,7 @@
               <div class="form-group">
                 <label for="" class="col-md-4 control-label">Category Name</label>
                 <div class="col-md-4">
-                  <input type="text" placeholder="Category Name" class="form-control input-md"
-                    wire:model="category_name">
+                  <input type="text" placeholder="Enter Name" class="form-control input-md" wire:model="category_name">
                   @error('category_name')
                     <p class="text-danger">{{ $message }}</p>
                   @enderror
