@@ -21,6 +21,7 @@
 
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet">
+  @livewireStyles
 </head>
 
 <body>
@@ -81,14 +82,49 @@
           <ul class="navbar-nav float-right">
             <!-- User profile and search -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                  src="../../assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-              <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-              </div>
+              @if (Route::has('login'))
+                @auth
+                  @if (Auth::user()->role === 'ADM')
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src=""
+                        alt="{{ Auth::user()->name }}" class="rounded-circle" width="31"></a>
+                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                      <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
+                        Orders</a>
+                      <a class="dropdown-item" href=""><i class="ti-wallet m-r-5 m-l-5"></i> My
+                        Categories
+                      </a>
+                      <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-email m-r-5 m-l-5"
+                            onclick="event.preventDefault(); .closest('form')"></i> Sign
+                          Off
+                        </a>
+                      </form>
+                    </div>
+                  @else
+                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="" alt="user"
+                        class="rounded-circle" width="31"></a>
+                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                      <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
+                        Profile</a>
+                      <a class="dropdown-item" href=""><i class="ti-wallet m-r-5 m-l-5"></i> My
+                        Balance</a>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout').submit();">Sign Off </a>
+                      <form id="logout" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        {{-- {{ @method('POST') }} --}}
+                      </form>
+                    </div>
+                  @endif
+                @else
+              <li class="menu-item mr-5"><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
+              <li class="menu-item mr-3"><a title="Register or Login" href="{{ route('register') }}">Register</a>
+              </li>
+            @endauth
+            @endif
             </li>
             <!-- User profile and search -->
           </ul>
@@ -111,22 +147,22 @@
                 <div class="user-pic"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="users"
                     class="rounded-circle" width="40" /></div>
                 <div class="user-content hide-menu m-l-10">
-                  <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown"
+                  <a href="" class="" id="Userdd" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
                     <span class="op-5 user-email">varun@gmail.com</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My
+                    <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
                       Profile</a>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My
+                    <a class="dropdown-item" href=""><i class="ti-wallet m-r-5 m-l-5"></i> My
                       Balance</a>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                    <a class="dropdown-item" href=""><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="ti-settings m-r-5 m-l-5"></i> Account
+                    <a class="dropdown-item" href=""><i class="ti-settings m-r-5 m-l-5"></i> Account
                       Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i>
+                    <a class="dropdown-item" href=""><i class="fa fa-power-off m-r-5 m-l-5"></i>
                       Logout</a>
                   </div>
                 </div>
@@ -135,26 +171,35 @@
             </li>
             <li class="p-15 m-t-10"><a href="javascript:void(0)"
                 class="btn btn-block create-btn text-white no-block d-flex align-items-center"><i
-                  class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">Create New</span> </a></li>
+                  class="ti-plus"></i> <span class="hide-menu m-l-5">Create New Order</span> </a></li>
             <!-- User Profile-->
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
-                  class="hide-menu">Dashboard</span></a></li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-network"></i><span
-                  class="hide-menu">Profile</span></a></li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="table-basic.html" aria-expanded="false"><i class="mdi mdi-border-all"></i><span
-                  class="hide-menu">Table</span></a></li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
+                aria-expanded="false"><i class="ti-dashboard mdi-view-dashboard"></i><span
+                  class="hide-menu">Dashboard</span></a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('orders') }}"
+                aria-expanded="false"><i class="ti-shopping-cart-full"></i><span class="hide-menu">Orders</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('categories') }}"
+                aria-expanded="false">
+                <i class="ti-server"></i><span class="hide-menu">Categories</span>
+              </a>
+            </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="icon-material.html" aria-expanded="false"><i class="mdi mdi-face"></i><span
-                  class="hide-menu">Icon</span></a></li>
+                  class="hide-menu">Icon</span></a>
+            </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="starter-kit.html" aria-expanded="false"><i class="mdi mdi-file"></i><span
-                  class="hide-menu">Blank</span></a></li>
+                  class="hide-menu">Blank</span></a>
+            </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="error-404.html" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span
-                  class="hide-menu">404</span></a></li>
+                  class="hide-menu">404</span></a>
+            </li>
             <li class="text-center p-40 upgrade-btn">
               <a href="" class="btn btn-block btn-danger text-white" target="_blank">Upgrade to Pro</a>
             </li>
@@ -216,6 +261,8 @@
   <script src="{{ asset('assets/js/chartist.min.js') }}"></script>
   <script src="{{ asset('assets/js/chartist-plugin-tooltip.min.js') }}"></script>
   <script src="{{ asset('assets/js/dashboard1.js') }}"></script>
+
+  @livewireScripts
 </body>
 
 </html>
