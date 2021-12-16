@@ -42,20 +42,20 @@
         <div class="navbar-header" data-logobg="skin5">
 
           <!-- Logo -->
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="">
             <!-- Logo icon -->
             <b class="logo-icon">
-              <img src="" alt="homepage" class="dark-logo" />
+              <img src="" alt="pacho design" class="dark-logo" />
               <!-- Light Logo icon -->
-              <img src="" alt="homepage" class="light-logo" />
+              <img src="" alt="pacho design" class="light-logo" />
             </b>
             <!--End Logo icon -->
             <!-- Logo text -->
             <span class="logo-text">
               <!-- dark Logo text -->
-              <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+              <img src="assets/images/logo-text.png" alt="pacho design" class="dark-logo" />
               <!-- Light Logo text -->
-              <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+              <img src="assets/images/logo-light-text.png" class="light-logo" alt="pacho design" />
             </span>
           </a>
 
@@ -149,8 +149,9 @@
                 <div class="user-content hide-menu m-l-10">
                   <a href="" class="" id="Userdd" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <h5 class="m-b-0 user-name font-medium">Steave Jobs <i class="fa fa-angle-down"></i></h5>
-                    <span class="op-5 user-email">varun@gmail.com</span>
+                    <h5 class="m-b-0 user-name font-medium">{{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
+                    </h5>
+                    <span class="op-5 user-email">{{ Auth::user()->email }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
                     <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
@@ -169,9 +170,11 @@
               </div>
               <!-- End User Profile-->
             </li>
-            <li class="p-15 m-t-10"><a href="javascript:void(0)"
-                class="btn btn-block create-btn text-white no-block d-flex align-items-center"><i
-                  class="ti-plus"></i> <span class="hide-menu m-l-5">Create New Order</span> </a></li>
+            <li class="p-15 m-t-10">
+              <a href="{{ route('order.add') }}"
+                class="btn btn-block create-btn text-white no-block d-flex align-items-center">
+                <i class="ti-plus"></i> <span class="hide-menu m-l-5">Create New Order</span> </a>
+            </li>
             <!-- User Profile-->
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/"
                 aria-expanded="false"><i class="ti-dashboard mdi-view-dashboard"></i><span

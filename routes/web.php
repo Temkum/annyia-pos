@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\AddCategory;
+use App\Http\Livewire\AddOrder;
 use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Dashboard;
@@ -30,4 +31,6 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     
     Route::get('/category/add', AddCategory::class)->name('category.add');
+
+    Route::get('/order/add', AddOrder::class)->name('order.add');
 });
