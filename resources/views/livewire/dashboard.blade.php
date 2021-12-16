@@ -2,27 +2,264 @@
   <!-- Container fluid  -->
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <div class="card">
-          <div class="card-body">
-            <div class="d-md-flex align-items-center">
-              <div>
-                <h4 class="card-title">Sales Summary</h4>
-                <h5 class="card-subtitle">Overview of Latest Month</h5>
-              </div>
-              <div class="ml-auto d-flex no-block align-items-center">
-                <ul class="list-inline font-12 dl m-r-15 m-b-0">
-                  <li class="list-inline-item text-info"><i class="fa fa-circle"></i> Iphone</li>
-                  <li class="list-inline-item text-primary"><i class="fa fa-circle"></i> Ipad</li>
-                </ul>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4>Recent Transactions</h4>
+            <div class="right-column">
+              <div class="badge badge-primary">Latest 5</div>
+            </div>
+          </div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" href="#sale-latest" role="tab" data-toggle="tab" aria-selected="false">Sale</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active show" href="#purchase-latest" role="tab" data-toggle="tab"
+                aria-selected="true">Purchase</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#quotation-latest" role="tab" data-toggle="tab"
+                aria-selected="false">Quotation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#payment-latest" role="tab" data-toggle="tab"
+                aria-selected="false">Payment</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade" id="sale-latest">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Reference</th>
+                      <th>Customer</th>
+                      <th>Status</th>
+                      <th>Grand Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>07/12/2021</td>
+                      <td>posr-20211207-070932</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Completed</div>
+                      </td>
+                      <td>573</td>
+                    </tr>
+                    <tr>
+                      <td>24/11/2021</td>
+                      <td>posr-20211124-062857</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Completed</div>
+                      </td>
+                      <td>3161</td>
+                    </tr>
+                    <tr>
+                      <td>15/11/2021</td>
+                      <td>sr-20211115-120309</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Completed</div>
+                      </td>
+                      <td>1542</td>
+                    </tr>
+                    <tr>
+                      <td>14/11/2021</td>
+                      <td>posr-20211114-013929</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Completed</div>
+                      </td>
+                      <td>374</td>
+                    </tr>
+                    <tr>
+                      <td>20/10/2021</td>
+                      <td>posr-20211020-011209</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Completed</div>
+                      </td>
+                      <td>102</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="row">
-              <!-- column -->
-              <div class="col-lg-12">
-                <div class="campaign ct-charts"></div>
+            <div role="tabpanel" class="tab-pane fade active show" id="purchase-latest">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Reference</th>
+                      <th>Supplier</th>
+                      <th>Status</th>
+                      <th>Grand Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>07/12/2021</td>
+                      <td>pr-20211207-065825</td>
+                      <td>abdullah</td>
+                      <td>
+                        <div class="badge badge-success">Recieved</div>
+                      </td>
+                      <td>982</td>
+                    </tr>
+                    <tr>
+                      <td>29/11/2021</td>
+                      <td>pr-20211129-012605</td>
+                      <td>N/A</td>
+                      <td>
+                        <div class="badge badge-success">Recieved</div>
+                      </td>
+                      <td>1304</td>
+                    </tr>
+                    <tr>
+                      <td>20/10/2021</td>
+                      <td>pr-20211020-014709</td>
+                      <td>N/A</td>
+                      <td>
+                        <div class="badge badge-success">Recieved</div>
+                      </td>
+                      <td>880</td>
+                    </tr>
+                    <tr>
+                      <td>20/10/2021</td>
+                      <td>pr-20211020-014234</td>
+                      <td>N/A</td>
+                      <td>
+                        <div class="badge badge-success">Partial</div>
+                      </td>
+                      <td>8800</td>
+                    </tr>
+                    <tr>
+                      <td>03/10/2021</td>
+                      <td>pr-20211003-010621</td>
+                      <td>N/A</td>
+                      <td>
+                        <div class="badge badge-success">Recieved</div>
+                      </td>
+                      <td>882</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              <!-- column -->
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="quotation-latest">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Reference</th>
+                      <th>Customer</th>
+                      <th>Status</th>
+                      <th>Grand Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>28/05/2021</td>
+                      <td>qr-20210529-105356</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-danger">Pending</div>
+                      </td>
+                      <td>442</td>
+                    </tr>
+                    <tr>
+                      <td>12/01/2021</td>
+                      <td>qr-20210112-125803</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-danger">Pending</div>
+                      </td>
+                      <td>1660</td>
+                    </tr>
+                    <tr>
+                      <td>09/12/2020</td>
+                      <td>qr-20201210-053401</td>
+                      <td>Ashfaq</td>
+                      <td>
+                        <div class="badge badge-danger">Pending</div>
+                      </td>
+                      <td>9500</td>
+                    </tr>
+                    <tr>
+                      <td>23/10/2020</td>
+                      <td>qr-20201024-090814</td>
+                      <td>dhiman</td>
+                      <td>
+                        <div class="badge badge-danger">Pending</div>
+                      </td>
+                      <td>23000</td>
+                    </tr>
+                    <tr>
+                      <td>22/10/2018</td>
+                      <td>qr-20181023-061249</td>
+                      <td>walk-in-customer</td>
+                      <td>
+                        <div class="badge badge-success">Sent</div>
+                      </td>
+                      <td>453</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="payment-latest">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Reference</th>
+                      <th>Amount</th>
+                      <th>Paid By</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>07/12/2021</td>
+                      <td>spr-20211207-070932</td>
+                      <td>573</td>
+                      <td>Cash</td>
+                    </tr>
+                    <tr>
+                      <td>24/11/2021</td>
+                      <td>spr-20211124-062858</td>
+                      <td>3161</td>
+                      <td>Cash</td>
+                    </tr>
+                    <tr>
+                      <td>14/11/2021</td>
+                      <td>spr-20211114-013929</td>
+                      <td>374</td>
+                      <td>Cash</td>
+                    </tr>
+                    <tr>
+                      <td>20/10/2021</td>
+                      <td>spr-20211020-011209</td>
+                      <td>102</td>
+                      <td>Cash</td>
+                    </tr>
+                    <tr>
+                      <td>14/10/2021</td>
+                      <td>spr-20211014-035825</td>
+                      <td>1100</td>
+                      <td>Cash</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

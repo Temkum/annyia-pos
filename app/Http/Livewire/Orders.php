@@ -10,6 +10,11 @@ class Orders extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
+
+    public function updateOrderStatus()
+    {
+        # code...
+    }
     
     public function render()
     {

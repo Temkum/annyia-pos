@@ -31,6 +31,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
     
     Route::get('/category/add', AddCategory::class)->name('category.add');
+    Route::get('/category/edit/{category_id}', Categories::class)->name('category.edit');
 
     Route::get('/order/add', AddOrder::class)->name('order.add');
 });

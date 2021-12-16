@@ -19,6 +19,14 @@ class Categories extends Component
         $this->pagesize = '12';
     }
 
+    public function deleteCategory($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+
+        session()->flash('message', 'Delete successful!');
+    }
+
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
         
