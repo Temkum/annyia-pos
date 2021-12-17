@@ -15,6 +15,14 @@ class Orders extends Component
     {
         # code...
     }
+
+    public function deleteOrder($id)
+    {
+        $category = Order::find($id);
+        $category->delete();
+
+        session()->flash('message', 'Deleted successfully!');
+    }
     
     public function render()
     {

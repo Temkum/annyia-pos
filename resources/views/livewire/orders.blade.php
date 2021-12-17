@@ -24,6 +24,7 @@
               <h5 class="card-subtitle">Overview of Top Selling Items</h5>
             </div>
             <div class="ml-auto">
+
               <div class="dl">
                 <select class="custom-select">
                   <option value="0" selected>Monthly</option>
@@ -35,6 +36,11 @@
             </div>
           </div>
           <!-- title -->
+        </div>
+        <div class="mt-2 w-50 m-auto">
+          @if (Session::has('message'))
+            <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+          @endif
         </div>
         <div class="table-responsive">
           <table class="table v-middle table-sm ">
@@ -59,19 +65,21 @@
                 <tr>
                   <td class=""></td>
                   <td class="">{{ $order->order_code }}</td>
-                  <td class="">{{ $order->advance_paid }}</td>
+                  <td class="">{{ $order->advance_paid }}Fcfa</td>
                   <td class="">{{ $order->quantity }}</td>
-                  <td class="">{{ $order->due_date }}</td>
-                  <td class="">{{ $order->balance }}</td>
+                  <td class="badge badge-success">{{ $order->due_date }}</td>
+                  <td class="">{{ $order->balance }}Fcfa</td>
                   <td class="">{{ $order->description }}</td>
-                  <td class="">{{ $order->price }}</td>
+                  <td class="">{{ $order->price }}Fcfa</td>
                   <td class="">{{ $order->full_name }}</td>
                   <td class="">{{ $order->mobile }}</td>
                   <td class="">{{ $order->address }}</td>
                   <td class="d-flex text-align-center">
                     <div class="action m-2">
                       <a href="" class="btn btn-sm btn-outline-primary m-1">Modify</a>
-                      <a href="" class="btn btn-sm btn-outline-danger m-1">Delete</a>
+                      <a href="" class="btn btn-sm btn-outline-danger m-1"
+                        onclick="confirm('Are you sure you want to delete this order?') || event.stopImmediatePropagation()"
+                        wire:click.prevent="deleteOrder({{ $order->id }})">Delete</a>
                       <a href="" class="btn btn-sm btn-secondary">Print</a>
                     </div>
                   </td>

@@ -128,8 +128,8 @@
                         <div class="col-md-4">
                           <label> Payment method </label>
                           <select name="" id="" class="form-control" wire:model="payment_method">
-                            <option value="cash">In stock</option>
-                            <option value="bank_transfer">Out of stock</option>
+                            <option value="cash">Cash</option>
+                            <option value="bank_transfer">Bank Transfer</option>
                             <option value="momo">Mobile Money</option>
                           </select>
                           @error('payment_method')
