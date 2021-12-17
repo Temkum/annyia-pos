@@ -39,7 +39,7 @@
         </div>
         <div class="mt-2 w-50 m-auto">
           @if (Session::has('message'))
-            <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
+            <div class="alert alert-success text-center" role="alert">{{ Session::get('message') }}</div>
           @endif
         </div>
         <div class="table-responsive">
@@ -76,7 +76,8 @@
                   <td class="">{{ $order->address }}</td>
                   <td class="d-flex text-align-center">
                     <div class="action m-2">
-                      <a href="" class="btn btn-sm btn-outline-primary m-1">Modify</a>
+                      <a href="{{ route('order.edit', ['order_id' => $order->id]) }}"
+                        class="btn btn-sm btn-outline-primary m-1">Modify</a>
                       <a href="" class="btn btn-sm btn-outline-danger m-1"
                         onclick="confirm('Are you sure you want to delete this order?') || event.stopImmediatePropagation()"
                         wire:click.prevent="deleteOrder({{ $order->id }})">Delete</a>
