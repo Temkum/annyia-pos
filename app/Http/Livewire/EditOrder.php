@@ -70,7 +70,7 @@ class EditOrder extends Component
             'payment_note' => 'required',
         ]);
 
-        $order= Order::find($this->order_id);
+        $order = Order::find($this->order_id);
         $order->order_code = $this->order_code;
         $order->quantity = $this->quantity;
         $order->price = $this->price;

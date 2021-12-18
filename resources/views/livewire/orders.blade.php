@@ -1,4 +1,4 @@
-<div>
+<div class="page-wrapper">
   <style>
     .paginate-row {
       margin: auto;
@@ -10,7 +10,43 @@
       width: 50%;
     }
 
+    .badge,
+    .btn-sm {
+      border-radius: 5px;
+    }
+
   </style>
+
+  <!-- Bread crumb and right sidebar toggle -->
+  <div class="page-breadcrumb">
+    <div class="row align-items-center">
+      <div class="col-5">
+        <h4 class="page-title">Orders</h4>
+        <div class="d-flex align-items-center">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Orders</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="col-7">
+        <div class="text-right upgrade-btn">
+          <a href="" class="btn btn-danger text-white" target="_blank">Pending orders</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-3 text-center">
+        {{-- <label for="search">Search item</label> --}}
+        <div>
+          <input type="text" wire:model="term" placeholder="Search name">
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="row">
     <!-- column -->
@@ -26,10 +62,10 @@
             <div class="ml-auto">
 
               <div class="dl">
-                <select class="custom-select">
-                  <option value="0" selected>Monthly</option>
-                  <option value="1">Daily</option>
-                  <option value="2">Weekly</option>
+                <select class="custom-select" wire:model="sorting">
+                  <option value="default" selected>Due Date</option>
+                  <option value="due_date">Due orders</option>
+                  <option value="price">Price</option>
                   <option value="3">Yearly</option>
                 </select>
               </div>
@@ -46,18 +82,19 @@
           <table class="table v-middle table-sm ">
             <thead class="bg-secondary text-white">
               <tr class="">
-                <th class="border-top-0">SN</th>
-                <th class="border-top-0">Code</th>
-                <th class="border-top-0">Advance Paid</th>
-                <th class="border-top-0">Qty</th>
-                <th class="border-top-0">Due Date</th>
-                <th class="border-top-0">Balance</th>
-                <th class="border-top-0">Order Details</th>
-                <th class="border-top-0">Total</th>
-                <th class="border-top-0">Client Name</th>
-                <th class="border-top-0">Phone</th>
-                <th class="border-top-0">Address</th>
-                <th class="border-top-0"></th>
+                <th class="">SN</th>
+                <th class="">Code</th>
+                <th class="">Advance Paid</th>
+                <th class="">Qty</th>
+                <th class="">Date Added</th>
+                <th class="">Balance</th>
+                <th class="">Status</th>
+                {{-- <th class="">Order Details</th> --}}
+                <th class="">Total</th>
+                <th class="">Client Name</th>
+                <th class="">Phone</th>
+                <th class="">Address</th>
+                <th class=""></th>
               </tr>
             </thead>
             <tbody>
@@ -67,9 +104,10 @@
                   <td class="">{{ $order->order_code }}</td>
                   <td class="">{{ $order->advance_paid }}Fcfa</td>
                   <td class="">{{ $order->quantity }}</td>
-                  <td class="badge badge-success">{{ $order->due_date }}</td>
+                  <td class="">{{ $order->created_at->diffForHumans() }}</td>
                   <td class="">{{ $order->balance }}Fcfa</td>
-                  <td class="">{{ $order->description }}</td>
+                  <td class="badge badge-warning">{{ $order->status }}</td>
+                  {{-- <td class="">{{ $order->description }}</td> --}}
                   <td class="">{{ $order->price }}Fcfa</td>
                   <td class="">{{ $order->full_name }}</td>
                   <td class="">{{ $order->mobile }}</td>

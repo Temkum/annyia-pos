@@ -26,12 +26,12 @@
 
 <body>
   <!-- Preloader - style you can find in spinners.css -->
-  <div class="preloader">
+  {{-- <div class="preloader">
     <div class="lds-ripple">
       <div class="lds-pos"></div>
       <div class="lds-pos"></div>
     </div>
-  </div>
+  </div> --}}
   <!-- Main wrapper - style you can find in pages.scss -->
   <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
@@ -46,33 +46,24 @@
             <!-- Logo icon -->
             <b class="logo-icon">
               <img src="" alt="pacho design" class="dark-logo" />
-              <!-- Light Logo icon -->
-              <img src="" alt="pacho design" class="light-logo" />
             </b>
-            <!--End Logo icon -->
-            <!-- Logo text -->
-            <span class="logo-text">
-              <!-- dark Logo text -->
-              <img src="assets/images/logo-text.png" alt="pacho design" class="dark-logo" />
-              <!-- Light Logo text -->
-              <img src="assets/images/logo-light-text.png" class="light-logo" alt="pacho design" />
-            </span>
           </a>
 
           <!-- This is for the sidebar toggle which is visible on mobile only -->
           <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i
               class="ti-menu ti-close"></i></a>
         </div>
-
         <!-- End Logo -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
-          <ul class="navbar-nav float-left mr-auto">
 
-            <!-- Search -->
-            <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+          <!-- Search -->
+          {{-- @livewire('search') --}}
+          <ul class="navbar-nav float-left mr-auto">
+            <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href=""><i
                   class="ti-search"></i></a>
-              <form class="app-search position-absolute">
-                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i
+              <form class="app-search position-absolute" action="">
+                <input type="text" class="form-control" placeholder="Search term"> <a class="srh-btn"><i
                     class="ti-close"></i></a>
               </form>
             </li>
@@ -191,11 +182,11 @@
                 <i class="ti-server"></i><span class="hide-menu">Categories</span>
               </a>
             </li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="icon-material.html" aria-expanded="false"><i class="mdi mdi-face"></i><span
-                  class="hide-menu">Icon</span></a>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
+                aria-expanded="false"><i class="ti-control-pause"></i><span class="hide-menu">Pending
+                  Orders</span></a>
             </li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+            {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="starter-kit.html" aria-expanded="false"><i class="mdi mdi-file"></i><span
                   class="hide-menu">Blank</span></a>
             </li>
@@ -204,8 +195,8 @@
                   class="hide-menu">404</span></a>
             </li>
             <li class="text-center p-40 upgrade-btn">
-              <a href="" class="btn btn-block btn-danger text-white" target="_blank">Upgrade to Pro</a>
-            </li>
+              <a href="" class="btn btn-block btn-danger text-white" target="_blank">Pending Tasks</a>
+            </li> --}}
           </ul>
 
         </nav>
@@ -216,37 +207,18 @@
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
     <!-- Page wrapper  -->
 
-    <div class="page-wrapper">
-      <!-- Bread crumb and right sidebar toggle -->
-      <div class="page-breadcrumb">
-        <div class="row align-items-center">
-          <div class="col-5">
-            <h4 class="page-title">Dashboard</h4>
-            <div class="d-flex align-items-center">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Library</li>
-                </ol>
-              </nav>
-            </div>
-          </div>
-          <div class="col-7">
-            <div class="text-right upgrade-btn">
-              <a href="" class="btn btn-danger text-white" target="_blank">Upgrade to Pro</a>
-            </div>
-          </div>
+    {{ $slot }}
+
+    <footer class="footer text-center">
+      <div class="row">
+        <div class="col-md-6 ml-5">&copy; Pacho Design - All Rights Reserved</div>
+        <div class="col-md-4">Developed by
+          <a href="https://softechdev.netlify.app">Kum Jude Tem</a>.
         </div>
       </div>
-
-      {{ $slot }}
-
-      <footer class="footer text-center">
-        &copy; Pacho Design - All Rights Reserved Developed by <a href="https://softechdev.netlify.app">Kum
-          Jude Tem</a>.
-      </footer>
-    </div>
+    </footer>
   </div>
+
 
   <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
   <!-- Bootstrap tether Core JavaScript -->

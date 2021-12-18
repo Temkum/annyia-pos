@@ -17,6 +17,7 @@ class AddOrder extends Component
     public $name;
     public $address;
     public $mobile;
+    public $order_status;
     public $payment_note;
     public $payment_method;
 
@@ -32,6 +33,7 @@ class AddOrder extends Component
             'name' => 'required',
             'address' => 'required',
             'mobile' => 'required',
+            'order_status' => 'required',
             'payment_note' => 'required',
         ]);
 
@@ -45,6 +47,7 @@ class AddOrder extends Component
         $order->full_name = $this->name;
         $order->address = $this->address;
         $order->mobile = $this->mobile;
+        $order->status = $this->order_status;
         $order->description = $this->payment_note;
         $order->payment_method = $this->payment_method;
         $order->save();

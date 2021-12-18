@@ -12,12 +12,13 @@ class Categories extends Component
     public $cat_name;
     public $sorting;
     public $pagesize;
+    public $term;
 
-    public function mount()
-    {
-        $this->sorting = 'default';
-        $this->pagesize = '12';
-    }
+    // public function mount()
+    // {
+    //     $this->sorting = 'default';
+    //     $this->pagesize = '12';
+    // }
 
     public function deleteCategory($id)
     {
@@ -32,7 +33,9 @@ class Categories extends Component
         
     public function render()
     {
-        $categories = Category::all();
+        $categories = Category::when($this->term, function ($query, $term) {
+            return $query->where('category_name', 'LIKE', "%$term%");
+        })->paginate(5);
         
         return view('livewire.categories', ['categories'=>$categories])->layout('layouts.base');
     }

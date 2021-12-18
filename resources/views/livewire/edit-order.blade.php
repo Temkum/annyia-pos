@@ -1,4 +1,26 @@
-<div>
+<div class="page-wrapper">
+  <!-- Bread crumb and right sidebar toggle -->
+    <div class="page-breadcrumb">
+      <div class="row align-items-center">
+        <div class="col-5">
+          <h4 class="page-title">Orders</h4>
+          <div class="d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Modify Orders</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="col-7">
+          <div class="text-right upgrade-btn">
+           {{--  <a href="" class="btn btn-danger text-white" target="_blank">Pending orders</a> --}}
+          </div>
+        </div>
+      </div>
+    </div>
+
   <div class="content-wrapper">
     <h3 class="page-heading mb-4 text-center">Modify Order</h3>
     @if (Session::has('message'))
@@ -127,7 +149,20 @@
                             wire:model="payment_note"></textarea>
                         </div>
 
-                        <div class="col-md-4">
+                          <div class="col-md-3">
+                          <label> Order Status </label>
+                          <select name="" id="" class="form-control" wire:model="order_status">
+                            <option value="Pending">Pending</option>
+                            <option value="Due">Due</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                          </select>
+                          @error('payment_method')
+                            <p class="text-danger">{{ $message }}</p>
+                          @enderror
+                        </div>
+
+                        <div class="col-md-3">
                           <label> Payment method </label>
                           <select name="" id="" class="form-control" wire:model="payment_method">
                             <option value="cash">Cash</option>

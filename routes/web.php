@@ -8,6 +8,7 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\EditCategory;
 use App\Http\Livewire\EditOrder;
 use App\Http\Livewire\Orders;
+use App\Http\Livewire\Search;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Dashboard::class)->name('dashboard');
 Route::get('/orders', Orders::class)->name('orders');
 Route::get('/categories', Categories::class)->name('categories');
+Route::get('/search', Search::class)->name('orders.search');
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
