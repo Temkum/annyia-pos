@@ -1,13 +1,7 @@
 <div class="page-wrapper">
   <style>
-    .paginate-row {
-      margin: auto;
-      width: 50%;
-    }
-
-    .paginate-row div {
-      margin: auto;
-      width: 50%;
+    nav svg {
+      max-height: 20px;
     }
 
     .badge,
@@ -33,7 +27,7 @@
       </div>
       <div class="col-7">
         <div class="text-right upgrade-btn">
-          <a href="" class="btn btn-danger text-white" target="_blank">Pending orders</a>
+          <a href="#" class="btn btn-danger text-white">Pending orders</a>
         </div>
       </div>
     </div>
@@ -60,13 +54,12 @@
               <h5 class="card-subtitle">Overview of Top Selling Items</h5>
             </div>
             <div class="ml-auto">
-
               <div class="dl">
                 <select class="custom-select" wire:model="sorting">
                   <option value="default" selected>Due Date</option>
                   <option value="due_date">Due orders</option>
                   <option value="price">Price</option>
-                  <option value="3">Yearly</option>
+                  <option value="pending">Pending</option>
                 </select>
               </div>
             </div>

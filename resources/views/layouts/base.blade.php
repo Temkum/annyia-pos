@@ -21,6 +21,7 @@
 
   <!-- Custom CSS -->
   <link href="{{ asset('assets/css/style.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
   @livewireStyles
 </head>
 

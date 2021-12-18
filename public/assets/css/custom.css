@@ -1,0 +1,13 @@
+  .paginate-row,
+  .paginate-row div {
+      margin: auto;
+      width: 50%;
+  }
+
+  .bg-gray {
+      background-color: rgba(99, 96, 96, 0.877);
+  }
+
+  .btn {
+      border-radius: 5px;
+  }

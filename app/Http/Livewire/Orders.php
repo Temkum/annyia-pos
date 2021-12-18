@@ -13,12 +13,18 @@ class Orders extends Component
     protected $paginationTheme = 'bootstrap';
     
     public $term;
-    
+    public $search;
+    public $sorting;
+    public $page_size;
+    public $order_id;
 
-    public function updateOrderStatus()
-    {
-        # code...
-    }
+    // public function mount()
+    // {
+    //     $this->sorting = 'default';
+    //     $this->pagesize = '12';
+    //     $this->fill(request()->only('search', 'order_id'));
+    // }
+
 
     public function deleteOrder($id)
     {
@@ -30,17 +36,18 @@ class Orders extends Component
     
     public function render()
     {
-        /*    if ($this->sorting == 'due_date') {
-               $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_cat_id . '%')->orderBy('created_at', 'DESC')->paginate($this->page_size);
-           } elseif ($this->sorting == 'price') {
-               $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_cat_id . '%')->orderBy('price', 'DESC')->paginate($this->page_size);
-           } else {
-               $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_cat_id . '%');
-           } */
+        /*  if ($this->sorting == 'due_date') {
+             $orders = Order::where('due_date', 'LIKE', '%' . $this->search . '%')->where('due_date', 'LIKE', '%' . $this->order_id . '%')->orderBy('created_at', 'DESC')->paginate($this->page_size);
+         } elseif ($this->sorting == 'price') {
+             $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_id . '%')->orderBy('price', 'DESC')->paginate($this->page_size);
+         } else {
+             $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_id . '%');
+         } */
 
         $orders = Order::when($this->term, function ($query, $term) {
-            return $query->where('full_name', 'LIKE', "%$term%");
-        })->paginate(5);
+            return $query->where('full_name', 'LIKE', "%$term%")->orWhere('status', 'LIKE', "%$term%")->orderBy('created_at', 'ASC');
+        })->paginate(12);
+        
         
         $categories = Category::all();
 

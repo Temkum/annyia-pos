@@ -1,16 +1,12 @@
   <div class="page-wrapper">
-    <style>
-      .paginate-row {
-        margin: auto;
-        width: 50%;
-      }
-
+    {{-- <style>
+      .paginate-row,
       .paginate-row div {
         margin: auto;
         width: 50%;
       }
 
-    </style>
+    </style> --}}
     <!-- Bread crumb and right sidebar toggle -->
     <div class="page-breadcrumb">
       <div class="row align-items-center">
@@ -25,11 +21,11 @@
             </nav>
           </div>
         </div>
-        <div class="col-7">
+        {{-- <div class="col-7">
           <div class="text-right upgrade-btn">
             <a href="" class="btn btn-danger text-white" target="_blank">Due Orders</a>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="row">
         <div class="col-12 mt-3 text-center">
@@ -39,35 +35,35 @@
           </div>
         </div>
       </div>
-      
+
     </div>
     <!-- Container fluid  -->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-12">
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
               <h4>Recent Transactions</h4>
               <div class="right-column">
-                <div class="badge badge-primary">Latest 5</div>
+                {{-- <div class="badge badge-primary">Latest 5</div> --}}
               </div>
             </div>
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active show" href="#sale-latest" role="tab" data-toggle="tab"
-                  aria-selected="false">Order Status</a>
+                  aria-selected="false">Order Details</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="#purchase-latest" role="tab" data-toggle="tab"
-                  aria-selected="true">Order Details</a>
+                  aria-selected="true">Pending</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#quotation-latest" role="tab" data-toggle="tab"
-                  aria-selected="false">Quotation</a>
+                  aria-selected="false">Due</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#payment-latest" role="tab" data-toggle="tab"
-                  aria-selected="false">Payment</a>
+                  aria-selected="false">Completed</a>
               </li>
             </ul>
 
@@ -75,44 +71,49 @@
               <div role="tabpanel" class="tab-pane fade active show" id="sale-latest">
                 <div class="table-responsive">
                   <table class="table">
-                    <thead>
+                    <thead class="bg-gray text-white">
                       <tr>
                         <th>Date Added</th>
-                        <th>Reference</th>
+                        <th>Advance Paid</th>
                         <th>Customer</th>
                         <th>Status</th>
                         <th>Grand Total</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($orders as $order)
                         <tr>
                           <td>{{ $order->created_at->diffForHumans() }}</td>
-                          <td>{{ $order->order_code }}</td>
+                          <td>{{ $order->advance_paid }}Fcfa</td>
                           <td>{{ $order->full_name }}</td>
                           <td>
                             @if ($order->status == 'Due' || $order->status == 'Cancelled')
                               <div class="badge badge-danger text-white">{{ $order->status }}</div>
                             @elseif ($order->status == 'Delivered')
                               <div class="badge badge-success text-white">{{ $order->status }}</div>
-                            @else
+                            @elseif($order->status == 'Pending')
                               <div class="badge badge-warning text-white">{{ $order->status }}</div>
+                            @else
+                              <div class="badge badge-secondary text-white">{{ $order->status }}</div>
                             @endif
 
                           </td>
-                          <td>{{ $order->price }}Fcfa</td>
+                          <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
+                          <td><a class="btn btn-sm btn-outline-secondary"
+                              href="{{ route('orders', ['order_id', $order->id]) }}">Print</a></td>
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
-                  <div class="paginate-row">
+                  {{-- <div class="paginate-row">
                     {{ $orders->links() }}
-                  </div>
+                  </div> --}}
 
                 </div>
               </div>
 
-              <!-- purchase tab -->
+              <!-- pending / purchase tab -->
               <div role="tabpanel" class="tab-pane fade " id="purchase-latest">
                 <div class="table-responsive">
                   <table class="table">
@@ -127,133 +128,90 @@
                     </thead>
                     <tbody>
                       @foreach ($orders as $order)
-                        <tr>
-                          <td>{{ $order->created_at->diffForHumans() }}</td>
-                          <td>{{ $order->full_name }}</td>
-                          <td>{{ $order->description }}</td>
-                          <td>
-                            <div class="badge badge-success">{{ $order->order_code }}</div>
-                          </td>
-                          <td>{{ $order->advance_paid }}Fcfa</td>
-                        </tr>
+                        @if ($order->status == 'Pending')
+                          <tr>
+                            <td>{{ $order->created_at->diffForHumans() }}</td>
+                            <td>{{ $order->full_name }}</td>
+                            <td>{{ $order->description }}</td>
+                            <td>
+                              <div class="badge btn-warning p-2">{{ $order->status }}</div>
+                            </td>
+                            <td class="font-weight-bold">{{ $order->advance_paid }}Fcfa</td>
+                          </tr>
+                        @endif
                       @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
-
+              {{-- pending tap --}}
               <div role="tabpanel" class="tab-pane fade" id="quotation-latest">
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
                         <th>Date</th>
-                        <th>Reference</th>
+                        <th>Advance Paid</th>
                         <th>Customer</th>
+                        <th>Balance</th>
                         <th>Status</th>
                         <th>Grand Total</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>28/05/2021</td>
-                        <td>qr-20210529-105356</td>
-                        <td>walk-in-customer</td>
-                        <td>
-                          <div class="badge badge-danger">Pending</div>
-                        </td>
-                        <td>442</td>
-                      </tr>
-                      <tr>
-                        <td>12/01/2021</td>
-                        <td>qr-20210112-125803</td>
-                        <td>walk-in-customer</td>
-                        <td>
-                          <div class="badge badge-danger">Pending</div>
-                        </td>
-                        <td>1660</td>
-                      </tr>
-                      <tr>
-                        <td>09/12/2020</td>
-                        <td>qr-20201210-053401</td>
-                        <td>Ashfaq</td>
-                        <td>
-                          <div class="badge badge-danger">Pending</div>
-                        </td>
-                        <td>9500</td>
-                      </tr>
-                      <tr>
-                        <td>23/10/2020</td>
-                        <td>qr-20201024-090814</td>
-                        <td>dhiman</td>
-                        <td>
-                          <div class="badge badge-danger">Pending</div>
-                        </td>
-                        <td>23000</td>
-                      </tr>
-                      <tr>
-                        <td>22/10/2018</td>
-                        <td>qr-20181023-061249</td>
-                        <td>walk-in-customer</td>
-                        <td>
-                          <div class="badge badge-success">Sent</div>
-                        </td>
-                        <td>453</td>
-                      </tr>
+                      @foreach ($orders as $order)
+                        @if ($order->status == 'Due')
+                          <tr>
+                            <td>{{ $order->created_at->diffForHumans() }}</td>
+                            <td>{{ $order->advance_paid }}Fcfa</td>
+                            <td>{{ $order->full_name }}</td>
+                            <td>
+                              <div class="badge badge-danger">{{ $order->status }}</div>
+                            </td>
+                            <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
+                          </tr>
+                        @endif
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
+              {{-- delivered tab --}}
               <div role="tabpanel" class="tab-pane fade" id="payment-latest">
                 <div class="table-responsive">
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Date</th>
-                        <th>Reference</th>
+                        <th>Done At</th>
+                        <th>Name</th>
+                        <th>Status</th>
                         <th>Amount</th>
-                        <th>Paid By</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>07/12/2021</td>
-                        <td>spr-20211207-070932</td>
-                        <td>573</td>
-                        <td>Cash</td>
-                      </tr>
-                      <tr>
-                        <td>24/11/2021</td>
-                        <td>spr-20211124-062858</td>
-                        <td>3161</td>
-                        <td>Cash</td>
-                      </tr>
-                      <tr>
-                        <td>14/11/2021</td>
-                        <td>spr-20211114-013929</td>
-                        <td>374</td>
-                        <td>Cash</td>
-                      </tr>
-                      <tr>
-                        <td>20/10/2021</td>
-                        <td>spr-20211020-011209</td>
-                        <td>102</td>
-                        <td>Cash</td>
-                      </tr>
-                      <tr>
-                        <td>14/10/2021</td>
-                        <td>spr-20211014-035825</td>
-                        <td>1100</td>
-                        <td>Cash</td>
-                      </tr>
+                      @foreach ($orders as $order)
+                        @if ($order->status == 'Delivered')
+                          <tr>
+                            <td>{{ $order->updated_at->diffForHumans() }}</td>
+                            <td>{{ $order->full_name }}</td>
+                            <td class="badge badge-success">{{ $order->status }}</td>
+                            <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
+                          </tr>
+                        @endif
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
+            {{-- paginate --}}
+            <div class="paginate-row">
+              {{ $orders->links() }}
+            </div>
           </div>
         </div>
-        <div class="col-md-4">
+
+        {{-- <div class="col-md-4">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Feeds</h4>
@@ -279,13 +237,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
 
       {{-- sale chart --}}
       <div class="row">
         <!-- column -->
-        <div class="col-12">
+        {{-- <div class="col-12">
           <div class="card">
             <div class="card-body">
               <!-- title -->
@@ -405,12 +363,12 @@
               </table>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
 
       <div class="row">
         <!-- column -->
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Recent Comments</h4>
@@ -474,9 +432,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
+
         <!-- column -->
-        <div class="col-lg-6">
+        {{-- <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Temp Guide</h4>
@@ -530,7 +489,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
 
     </div>

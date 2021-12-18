@@ -1,4 +1,10 @@
 <div class="page-wrapper">
+  <style>
+    .btn-sm {
+      border-radius: 5px;
+    }
+
+  </style>
 
   <div class="row ml-5 mt-5">
     <div class="col-md-8">
@@ -49,6 +55,10 @@
                   @endforeach
                 </tbody>
               </table>
+            </div>
+            <div class="paginate-row">
+              {{-- pagination --}}
+              {{ $orders->links() }}
             </div>
           </div>
         </div>

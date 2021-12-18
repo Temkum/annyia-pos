@@ -18,11 +18,16 @@ class Dashboard extends Component
         $categories = Category::when($this->term, function ($query, $term) {
             return $query->where('category_name', 'LIKE', "%$term%");
         })->paginate(5);
-        
-        $orders = Order::orderBy('created_at', 'ASC')->paginate(5);
+       
         $orders = Order::when($this->term, function ($query, $term) {
-            return $query->where('full_name', 'LIKE', "%$term%");
-        })->paginate(5);
+            return $query->where('full_name', 'LIKE', "%$term%")->orWhere('due_date', 'LIKE', "%$term%")
+            ->orWhere('status', 'LIKE', "%$term%")
+            ->orWhere('balance', 'LIKE', "%$term%")
+            ->orWhere('advance_paid', 'LIKE', "%$term%")
+            ->orWhere('price', 'LIKE', "%$term%")
+            ->orWhere('quantity', 'LIKE', "%$term%")
+            ->orderBy('created_at', 'DESC');
+        })->paginate(10);
         
 
         $data = [
