@@ -19,24 +19,26 @@ class EditOrder extends Component
     public $mobile;
     public $payment_note;
     public $payment_method;
+    public $order_status;
     public $order_id;
     
     public function mount($order_id)
     {
-        // $this->order_id = $order_id;
+        $this->order_id = $order_id;
         $order = Order::where('id', $order_id)->first();
-        $this->order_id = $order->id;
-        $order->order_code = $order->order_code;
-        $order->quantity = $order->quantity;
-        $order->price = $order->price;
-        $order->due_date = $order->due_date;
-        $order->advance_paid = $order->advance;
-        $order->balance = $order->balance;
-        $order->full_name = $order->name;
-        $order->address = $order->address;
-        $order->mobile = $order->mobile;
-        $order->description = $order->payment_note;
-        $order->payment_method = $order->payment_method;
+        // $this->order_id = $order->id;
+        $this->order_code = $order->order_code;
+        $this->quantity = $order->quantity;
+        $this->price = $order->price;
+        $this->due_date = $order->due_date;
+        $this->advance = $order->advance_paid;
+        $this->balance = $order->balance;
+        $this->name = $order->full_name;
+        $this->address = $order->address;
+        $this->mobile = $order->mobile;
+        $this->order_status = $order->status;
+        $this->payment_note = $order->description;
+        $this->payment_method = $order->payment_method;
     }
 
     public function updated($fields)
@@ -51,6 +53,7 @@ class EditOrder extends Component
              'name' => 'required',
              'address' => 'required',
              'mobile' => 'required',
+             'order_status' => 'required',
              'payment_note' => 'required',
          ]);
     }
@@ -67,6 +70,7 @@ class EditOrder extends Component
             'name' => 'required',
             'address' => 'required',
             'mobile' => 'required',
+            'order_status' => 'required',
             'payment_note' => 'required',
         ]);
 
@@ -80,6 +84,7 @@ class EditOrder extends Component
         $order->full_name = $this->name;
         $order->address = $this->address;
         $order->mobile = $this->mobile;
+        $order->status = $this->order_status;
         $order->description = $this->payment_note;
         $order->payment_method = $this->payment_method;
         $order->save();
