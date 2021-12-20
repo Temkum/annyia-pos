@@ -7,7 +7,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="author" content="Kum Jude Tem">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
   <title>Pacho Design</title>
@@ -76,7 +78,7 @@
             <li class="nav-item dropdown">
               @if (Route::has('login'))
                 @auth
-                  @if (Auth::user()->role === 'ADM')
+                  @if (Auth::user()->role == 'ADM')
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src=""
                         alt="{{ Auth::user()->name }}" class="rounded-circle" width="31"></a>
@@ -118,7 +120,6 @@
             @endauth
             @endif
             </li>
-            <!-- User profile and search -->
           </ul>
         </div>
       </nav>
@@ -135,16 +136,18 @@
             <!-- User Profile-->
             <li>
               <!-- User Profile-->
-              <div class="user-profile d-flex no-block dropdown m-t-20">
-                <div class="user-pic"><img src="{{ asset('assets/images/users/1.jpg') }}" alt="users"
-                    class="rounded-circle" width="40" /></div>
-                <div class="user-content hide-menu m-l-10">
-                  <a href="" class="" id="Userdd" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <h5 class="m-b-0 user-name font-medium">{{ Auth::user()->name }} <i class="fa fa-angle-down"></i>
-                    </h5>
-                    <span class="op-5 user-email">{{ Auth::user()->email }}</span>
-                  </a>
+              @auth
+                <div class="user-profile d-flex no-block dropdown m-t-20">
+                  <div class="user-pic"><img src="{{ asset('assets/images/users/1.jpg') }}"
+                      alt="{{ Auth::user()->name }}" class="rounded-circle" width="40" /></div>
+                  <div class="user-content hide-menu m-l-10">
+                    <a href="" class="" id="Userdd" role="button" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      <h5 class="m-b-0 user-name font-medium">{{ Auth::user()->name }}<i class="fa fa-angle-down"></i>
+                      </h5>
+                      <span class="op-5 user-email">{{ Auth::user()->email }}</span>
+                    </a>
+                  @endauth
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
                     <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
                       Profile</a>

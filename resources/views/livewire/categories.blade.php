@@ -24,7 +24,6 @@
                 </div>
               </div>
             </div>
-            {{ $term }}
             <div class="categories mt-5">
               <table class="table table-sm">
                 <thead class="bg-secondary text-white">
@@ -58,7 +57,7 @@
             </div>
             <div class="paginate-row">
               {{-- pagination --}}
-              {{ $orders->links() }}
+              {{ $categories->links() }}
             </div>
           </div>
         </div>

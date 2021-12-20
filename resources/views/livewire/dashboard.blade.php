@@ -1,12 +1,4 @@
   <div class="page-wrapper">
-    {{-- <style>
-      .paginate-row,
-      .paginate-row div {
-        margin: auto;
-        width: 50%;
-      }
-
-    </style> --}}
     <!-- Bread crumb and right sidebar toggle -->
     <div class="page-breadcrumb">
       <div class="row align-items-center">
@@ -84,7 +76,7 @@
                     <tbody>
                       @foreach ($orders as $order)
                         <tr>
-                          <td>{{ $order->created_at->diffForHumans() }}</td>
+                          <td>{{ date('j F, Y', strtotime($order->created_at)) }}</td>
                           <td>{{ $order->advance_paid }}Fcfa</td>
                           <td>{{ $order->full_name }}</td>
                           <td>
@@ -103,6 +95,7 @@
                           <td><a class="btn btn-sm btn-outline-secondary"
                               href="{{ route('orders', ['order_id', $order->id]) }}">Print</a></td>
                         </tr>
+
                       @endforeach
                     </tbody>
                   </table>
@@ -144,6 +137,7 @@
                   </table>
                 </div>
               </div>
+
               {{-- pending tap --}}
               <div role="tabpanel" class="tab-pane fade" id="quotation-latest">
                 <div class="table-responsive">
@@ -171,11 +165,15 @@
                             <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
                           </tr>
                         @endif
+                        <div class="paginate-row">
+                          {{ $orders->links() }}
+                        </div>
                       @endforeach
                     </tbody>
                   </table>
                 </div>
               </div>
+
               {{-- delivered tab --}}
               <div role="tabpanel" class="tab-pane fade" id="payment-latest">
                 <div class="table-responsive">

@@ -99,7 +99,17 @@
                   <td class="">{{ $order->quantity }}</td>
                   <td class="">{{ $order->created_at->diffForHumans() }}</td>
                   <td class="">{{ $order->balance }}Fcfa</td>
-                  <td class="badge badge-warning">{{ $order->status }}</td>
+                  <td class="">
+                    @if ($order->status == 'Due' || $order->status == 'Cancelled')
+                      <div class="badge badge-danger text-white">{{ $order->status }}</div>
+                    @elseif ($order->status == 'Delivered')
+                      <div class="badge badge-success text-white">{{ $order->status }}</div>
+                    @elseif($order->status == 'Ordered')
+                      <div class="badge badge-secondary text-white">{{ $order->status }}</div>
+                    @else
+                      <div class="badge badge-warning text-white">{{ $order->status }}</div>
+                    @endif
+                  </td>
                   {{-- <td class="">{{ $order->description }}</td> --}}
                   <td class="">{{ $order->price }}Fcfa</td>
                   <td class="">{{ $order->full_name }}</td>
@@ -127,4 +137,5 @@
       </div>
     </div>
   </div>
+
 </div>

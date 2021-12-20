@@ -9,6 +9,7 @@ use App\Http\Livewire\EditCategory;
 use App\Http\Livewire\EditOrder;
 use App\Http\Livewire\Orders;
 use App\Http\Livewire\Search;
+use App\Http\Middleware\AuthAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,3 +41,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/order/add', AddOrder::class)->name('order.add');
     Route::get('/order/edit/{order_id}', EditOrder::class)->name('order.edit');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

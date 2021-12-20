@@ -17,19 +17,18 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role === 'ADM') {
+        if (Auth::user()->role == 'ADM') {
             session(['role' => 'ADM']);
-        } elseif (Auth::user()->role === 'USR') {
+        } elseif (Auth::user()->role == 'USR') {
             session(['role' => 'USR']);
-        }
-
-        if (session('role') === 'ADM') {
-            return $next($request);
         } else {
-            session()->flush();
-            return redirect()->route('login');
+            if (session('role') == 'ADM') {
+                return $next($request);
+            } else {
+                session()->flush();
+                return redirect()->route('login');
+            }
         }
-
         return $next($request);
     }
 }

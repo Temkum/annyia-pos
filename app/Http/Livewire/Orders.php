@@ -36,18 +36,9 @@ class Orders extends Component
     
     public function render()
     {
-        /*  if ($this->sorting == 'due_date') {
-             $orders = Order::where('due_date', 'LIKE', '%' . $this->search . '%')->where('due_date', 'LIKE', '%' . $this->order_id . '%')->orderBy('created_at', 'DESC')->paginate($this->page_size);
-         } elseif ($this->sorting == 'price') {
-             $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_id . '%')->orderBy('price', 'DESC')->paginate($this->page_size);
-         } else {
-             $orders = Order::where('full_name', 'like', '%' . $this->search . '%')->where('advance_paid', 'like', '%' . $this->order_id . '%');
-         } */
-
         $orders = Order::when($this->term, function ($query, $term) {
-            return $query->where('full_name', 'LIKE', "%$term%")->orWhere('status', 'LIKE', "%$term%")->orderBy('created_at', 'ASC');
-        })->paginate(12);
-        
+            return $query->where('full_name', 'LIKE', "%$term%")->orWhere('status', 'LIKE', "%$term%")->groupBy();
+        })->orderBy('created_at', 'ASC')->paginate(12);
         
         $categories = Category::all();
 

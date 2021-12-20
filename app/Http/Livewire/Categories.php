@@ -35,7 +35,7 @@ class Categories extends Component
     {
         $categories = Category::when($this->term, function ($query, $term) {
             return $query->where('category_name', 'LIKE', "%$term%");
-        })->paginate(5);
+        })->orderBy('created_at', 'DESC')->paginate(15);
         
         return view('livewire.categories', ['categories'=>$categories])->layout('layouts.base');
     }

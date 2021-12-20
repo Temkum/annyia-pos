@@ -25,11 +25,9 @@ class Dashboard extends Component
             ->orWhere('balance', 'LIKE', "%$term%")
             ->orWhere('advance_paid', 'LIKE', "%$term%")
             ->orWhere('price', 'LIKE', "%$term%")
-            ->orWhere('quantity', 'LIKE', "%$term%")
-            ->orderBy('created_at', 'DESC');
+            ->orWhere('quantity', 'LIKE', "%$term%");
         })->paginate(10);
-        
-
+    
         $data = [
             'categories' => $categories,
             'orders' => $orders
