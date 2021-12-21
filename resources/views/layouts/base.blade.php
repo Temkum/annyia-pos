@@ -4,21 +4,20 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Tell the browser to be responsive to screen width -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="Kum Jude Tem">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="">
   <title>Pacho Design</title>
 
   {{-- vendor --}}
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/themify-icons.css') }}" rel="stylesheet">
 
-  <!-- Custom CSS -->
   <link href="{{ asset('assets/css/chartist.min.css') }}" rel="stylesheet">
 
   <!-- Custom CSS -->
@@ -72,54 +71,40 @@
             </li>
           </ul>
 
-          <!-- Right side toggle and nav items -->
+          <!-- authentication - Right side -->
           <ul class="navbar-nav float-right">
-            <!-- User profile and search -->
             <li class="nav-item dropdown">
-              @if (Route::has('login'))
-                @auth
-                  @if (Auth::user()->role == 'ADM')
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src=""
-                        alt="{{ Auth::user()->name }}" class="rounded-circle" width="31"></a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                      <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
-                        Orders</a>
-                      <a class="dropdown-item" href=""><i class="ti-wallet m-r-5 m-l-5"></i> My
-                        Categories
-                      </a>
-                      <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <a class="dropdown-item" href="{{ route('logout') }}"><i class="ti-email m-r-5 m-l-5"
-                            onclick="event.preventDefault(); .closest('form')"></i> Sign
-                          Off
-                        </a>
-                      </form>
-                    </div>
-                  @else
-                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="" alt="user"
-                        class="rounded-circle" width="31"></a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                      <a class="dropdown-item" href=""><i class="ti-user m-r-5 m-l-5"></i> My
-                        Profile</a>
-                      <a class="dropdown-item" href=""><i class="ti-wallet m-r-5 m-l-5"></i> My
-                        Balance</a>
-                      <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout').submit();">Sign Off </a>
-                      <form id="logout" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        {{-- {{ @method('POST') }} --}}
-                      </form>
-                    </div>
-                  @endif
-                @else
-              <li class="menu-item mr-5"><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
-              <li class="menu-item mr-3"><a title="Register or Login" href="{{ route('register') }}">Register</a>
+              @guest
+                @if (Route::has('login'))
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
               </li>
-            @endauth
-            @endif
-            </li>
+              @endif
+
+              @if (Route::has('register'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+              @endif
+            @else
+              <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->name }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                  </form>
+                </div>
+              </li>
+            @endguest
           </ul>
         </div>
       </nav>
@@ -225,6 +210,7 @@
 
 
   <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Bootstrap tether Core JavaScript -->
   <script src="{{ asset('assets/js/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

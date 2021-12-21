@@ -19,11 +19,12 @@
           </div>
         </div> --}}
       </div>
+
+      {{-- <label for="search">Search item</label> --}}
       <div class="row">
         <div class="col-12 mt-3 text-center">
-          {{-- <label for="search">Search item</label> --}}
           <div>
-            <input type="text" wire:model="term" placeholder="Search name">
+            <input type="text" wire:model="term" placeholder="Search item" class="search-boxx">
           </div>
         </div>
       </div>
@@ -138,7 +139,7 @@
                 </div>
               </div>
 
-              {{-- pending tap --}}
+              {{-- due tap --}}
               <div role="tabpanel" class="tab-pane fade" id="quotation-latest">
                 <div class="table-responsive">
                   <table class="table">
@@ -165,9 +166,7 @@
                             <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
                           </tr>
                         @endif
-                        <div class="paginate-row">
-                          {{ $orders->links() }}
-                        </div>
+
                       @endforeach
                     </tbody>
                   </table>
@@ -201,10 +200,6 @@
                   </table>
                 </div>
               </div>
-            </div>
-            {{-- paginate --}}
-            <div class="paginate-row">
-              {{ $orders->links() }}
             </div>
           </div>
         </div>
@@ -488,6 +483,9 @@
             </div>
           </div>
         </div> --}}
+      </div>
+      <div class="paginate-row">
+        {{ $orders->links() }}
       </div>
 
     </div>

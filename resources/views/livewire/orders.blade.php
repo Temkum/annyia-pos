@@ -31,11 +31,11 @@
         </div>
       </div>
     </div>
+    {{-- search bar --}}
     <div class="row">
       <div class="col-12 mt-3 text-center">
-        {{-- <label for="search">Search item</label> --}}
         <div>
-          <input type="text" wire:model="term" placeholder="Search name">
+          <input type="text" wire:model="term" placeholder="Search item" class="search-boxx">
         </div>
       </div>
     </div>
@@ -56,9 +56,9 @@
             <div class="ml-auto">
               <div class="dl">
                 <select class="custom-select" wire:model="sorting">
-                  <option value="default" selected>Due Date</option>
+                  <option value="default" selected>Months</option>
                   <option value="due_date">Due orders</option>
-                  <option value="price">Price</option>
+                  <option value="name">Name</option>
                   <option value="pending">Pending</option>
                 </select>
               </div>

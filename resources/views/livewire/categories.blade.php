@@ -16,11 +16,11 @@
               <a href="{{ route('category.add') }}" class="btn btn-primary">Add new category</a>
             </div>
 
+            {{-- <label for="search">Search item</label> --}}
             <div class="row">
               <div class="col-12 mt-3 text-center">
-                {{-- <label for="search">Search item</label> --}}
                 <div>
-                  <input type="text" wire:model="term" placeholder="Search name">
+                  <input class="search-boxx" type="text" wire:model="term" placeholder="Search name">
                 </div>
               </div>
             </div>
