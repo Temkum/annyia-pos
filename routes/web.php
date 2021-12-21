@@ -1,17 +1,17 @@
 <?php
 
-use App\Http\Livewire\AddCategory;
-use App\Http\Livewire\AddOrder;
-use App\Http\Livewire\Admin\AdminDashboard;
-use App\Http\Livewire\Categories;
-use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\EditCategory;
-use App\Http\Livewire\EditOrder;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Orders;
 use App\Http\Livewire\Search;
+use App\Http\Livewire\AddOrder;
+use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\EditOrder;
+use App\Http\Livewire\Categories;
+use App\Http\Livewire\AddCategory;
 use App\Http\Middleware\AuthAdmin;
+use App\Http\Livewire\EditCategory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin\AdminDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +33,7 @@ Route::get('/orders', Orders::class)->name('orders');
 Route::get('/categories', Categories::class)->name('categories');
 Route::get('/search', Search::class)->name('orders.search');
 Route::get('/home', Home::class)->name('home');
+Route::get('/invoice', 'App\Http\Controllers\InvoiceController@show');
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');

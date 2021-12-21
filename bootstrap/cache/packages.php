@@ -1,4 +1,15 @@
 <?php return array (
+  'barryvdh/laravel-dompdf' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -68,6 +79,17 @@
     'providers' => 
     array (
       0 => 'Laravel\\Ui\\UiServiceProvider',
+    ),
+  ),
+  'laraveldaily/laravel-invoices' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'LaravelDaily\\Invoices\\InvoiceServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Invoice' => 'LaravelDaily\\Invoices\\Facades\\Invoice',
     ),
   ),
   'livewire/livewire' => 
