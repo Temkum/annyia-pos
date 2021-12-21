@@ -7,6 +7,7 @@ use App\Http\Livewire\Categories;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\EditCategory;
 use App\Http\Livewire\EditOrder;
+use App\Http\Livewire\Home;
 use App\Http\Livewire\Orders;
 use App\Http\Livewire\Search;
 use App\Http\Middleware\AuthAdmin;
@@ -23,14 +24,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-}); */
+});
 
-Route::get('/', Dashboard::class)->name('dashboard');
+Route::get('/', Dashboard::class)->name('dashboard')->middleware('auth');
 Route::get('/orders', Orders::class)->name('orders');
 Route::get('/categories', Categories::class)->name('categories');
 Route::get('/search', Search::class)->name('orders.search');
+Route::get('/home', Home::class)->name('home');
 
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
     Route::get('/admin/dashboard', AdminDashboard::class)->name('admin.dashboard');
@@ -43,5 +45,3 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
