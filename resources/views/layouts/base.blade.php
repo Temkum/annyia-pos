@@ -59,16 +59,9 @@
 
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
 
-          <!-- Search -->
-          {{-- @livewire('search') --}}
+    {{-- app name --}}
           <ul class="navbar-nav float-left mr-auto">
-            <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href=""><i
-                  class="ti-search"></i></a>
-              <form class="app-search position-absolute" action="">
-                <input type="text" class="form-control" placeholder="Search term"> <a class="srh-btn"><i
-                    class="ti-close"></i></a>
-              </form>
-            </li>
+            <h3 class="text-white text-uppercase">Pacho Design</h3>
           </ul>
 
           <!-- authentication - Right side -->
@@ -123,7 +116,7 @@
               <!-- User Profile-->
               @auth
                 <div class="user-profile d-flex no-block dropdown m-t-20">
-                  <div class="user-pic"><img src="{{ asset('assets/images/users/1.jpg') }}"
+                  <div class="user-pic"><img src="{{ asset('assets/img/download.jfif') }}"
                       alt="{{ Auth::user()->name }}" class="rounded-circle" width="40" /></div>
                   <div class="user-content hide-menu m-l-10">
                     <a href="" class="" id="Userdd" role="button" data-toggle="dropdown"
@@ -210,7 +203,6 @@
 
 
   <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/app.js') }}" defer></script>
   <!-- Bootstrap tether Core JavaScript -->
   <script src="{{ asset('assets/js/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -219,13 +211,18 @@
   <script src="{{ asset('assets/js/waves.js') }}"></script>
   <!--Menu sidebar -->
   <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
-  <!--Custom JavaScript -->
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
+
   <!--This page JavaScript -->
   <!--chartis chart-->
   <script src="{{ asset('assets/js/chartist.min.js') }}"></script>
   <script src="{{ asset('assets/js/chartist-plugin-tooltip.min.js') }}"></script>
   <script src="{{ asset('assets/js/dashboard1.js') }}"></script>
+  <script src="{{ asset('assets/js/jQuery.print.js') }}"></script>
+
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
+  <!--Custom JavaScript -->
+  <script src="{{ asset('assets/js/custom.js') }}"></script>
 
   @livewireScripts
 </body>

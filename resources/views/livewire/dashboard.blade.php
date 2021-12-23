@@ -90,12 +90,10 @@
                             @else
                               <div class="badge badge-secondary text-white">{{ $order->status }}</div>
                             @endif
-
                           </td>
                           <td class="font-weight-bold">{{ $order->price }}Fcfa</td>
                           <td>
-                            <a class="btn btn-sm btn-outline-secondary" href="" onclick="printReceiptContent('print')"
-                              data-toggle="modal" data-target="#printReceipt">Print</a>
+                            <a class="btn btn-sm btn-outline-secondary" href="" data-toggle="modal" data-target="#printOrder">Print</a>
                           </td>
                         </tr>
 
@@ -237,8 +235,8 @@
 
       {{-- PRINT RECEIPT --}}
       <!-- Modal -->
-      <div class="modal fade" id="printReceipt" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
+        <div class="modal fade" id="printOrder{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -247,14 +245,14 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <div class="container-fluid" id="print">
+            <div class="modal-body" id="printable">
+              <div class="container-fluid" >
                 @include('livewire.receipt')
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save</button>
+              {{-- <button id="print" type="button" class="btn btn-primary w-50">Print</button> --}}
             </div>
           </div>
         </div>
@@ -525,22 +523,5 @@
 
       });
 
-      function printReceiptContent(el) {
-        let data =
-          `<input type="button" class="" id="printBtn" style="width: 70vw; padding: .5rem; cursor: pointer; backgroud-color: #008b8b; border-radius: 10px; display: block;" onclick="window.print()" value="PRINT ORDER">`;
-
-        data += document.getElementById(el).innerHTML;
-
-        orderReceipt = window.open('', 'printWindow', "left=150, top=130, width=600, height=700");
-        orderReceipt.screenX = 0;
-        orderReceipt.screenY = 0;
-        orderReceipt.document.write(data);
-        orderReceipt.document.title = 'Print Order Receipt';
-
-        orderReceipt.focus();
-        setTimeout(() => {
-          orderReceipt.close()
-        }, 10000);
-
-      };
+    });
     </script>
